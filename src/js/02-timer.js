@@ -44,6 +44,7 @@ const timerField = {
 const currentTime = new Date();
 
 startBtn.setAttribute('disabled', false);
+input.setAttribute('disabled', false);
 
 let chosenDate = 0;
 let interval = null;
@@ -60,6 +61,7 @@ const options = {
       Notify.failure('Please choose a date in the future');
       startBtn.disabled = true;
     } else startBtn.disabled = false;
+    input.disabled = true;
   },
 };
 
@@ -75,9 +77,12 @@ function start() {
     const timeFrame = fp.selectedDates[0] - new Date();
 
     const convertedTime = convertMs(timeFrame);
-    console.log(convertedTime);
 
-    timeUpdate(convertedTime);
+    if (timeFrame <= 1000) {
+      clearInterval(interval);
+    }
+
+    timeUpdate(timeFrame);
   }, 1000);
 
   function timeUpdate({ days, hours, minutes, seconds }) {
