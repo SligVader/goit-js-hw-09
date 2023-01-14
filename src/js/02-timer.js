@@ -60,7 +60,6 @@ const options = {
       Notify.failure('Please choose a date in the future');
       startBtn.disabled = true;
     } else startBtn.disabled = false;
-    input.disabled = true;
   },
 };
 
@@ -76,15 +75,15 @@ function start() {
   input.disabled = true;
   interval = setInterval(() => {
     const timeFrame = fp.selectedDates[0] - new Date();
-    console.log(timeFrame);
 
     const convertedTime = convertMs(timeFrame);
+    console.log(timeFrame);
 
     if (timeFrame <= 1000) {
       clearInterval(interval);
     }
 
-    timeUpdate(timeFrame);
+    timeUpdate(convertedTime);
   }, 1000);
 
   function timeUpdate({ days, hours, minutes, seconds }) {
