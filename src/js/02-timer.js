@@ -44,7 +44,6 @@ const timerField = {
 const currentTime = new Date();
 
 startBtn.setAttribute('disabled', false);
-input.setAttribute('disabled', false);
 
 let chosenDate = 0;
 let interval = null;
@@ -73,6 +72,7 @@ const fp = flatpickr(input, options);
 
 function start() {
   startBtn.disabled = true;
+  input.setAttribute('disabled', false);
   input.disabled = true;
   interval = setInterval(() => {
     const timeFrame = fp.selectedDates[0] - new Date();
