@@ -73,8 +73,10 @@ const fp = flatpickr(input, options);
 
 function start() {
   startBtn.disabled = true;
+  input.disabled = true;
   interval = setInterval(() => {
     const timeFrame = fp.selectedDates[0] - new Date();
+    console.log(timeFrame);
 
     const convertedTime = convertMs(timeFrame);
 
