@@ -1,20 +1,25 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const formRefs = {
-  form: document.querySelector('.form'),
-  delay: document.querySelector('input[name="delay"]'),
-  step: document.querySelector('input[name="step"]'),
-  amount: document.querySelector('input[name="amount"]'),
-};
+const form = document.querySelector('.form');
 
-formRefs.form.addEventListener('submit', promGen);
+form.addEventListener('submit', promGen);
+
+// const formRefs = {
+//   form: document.querySelector('.form'),
+//   delay: document.querySelector('input[name="delay"]'),
+//   step: document.querySelector('input[name="step"]'),
+//   amount: document.querySelector('input[name="amount"]'),
+// };
+
+// formRefs.form.addEventListener('submit', promGen);
 
 function promGen(evt) {
   evt.preventDefault();
 
-  let delay = Number(formRefs.delay.value);
-  const step = Number(formRefs.step.value);
-  const amount = Number(formRefs.amount.value);
+  let delay = Number(evt.target.elements.delay.value);
+  const step = Number(evt.target.elements.step.value);
+  const amount = Number(evt.target.elements.amount.value);
+  console.dir(evt.target.elements.amount.value);
 
   for (let position = 0; position < amount; position += 1) {
     createPromise(position, delay)
@@ -41,6 +46,6 @@ function createPromise(position, delay) {
       } else {
         rej(promise);
       }
-    });
+    }, delay);
   });
 }
