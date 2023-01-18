@@ -22,7 +22,7 @@ function promGen(evt) {
   console.dir(evt.target.elements.amount.value);
 
   for (let position = 0; position < amount; position += 1) {
-    createPromise(position, delay)
+    createPromise(position + 1, delay)
       .then(({ position, delay }) => {
         Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
       }, delay)
